@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Field Work Tracker</title>
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="stylesheet" href="style.css">
+
+    <meta name="theme-color" content="#2E7D32">
+</head>
+
+<body>
+
+<header>
+    <h1>🌾 Field Work Tracker</h1>
+</header>
+
+<div class="container">
+<div class="card">
+
+<h2>⚙️ Settings</h2>
+
+
+<label>Default Hourly Rate ($/hour)</label>
+
+<input 
+type="number"
+id="defaultHourlyRate"
+step="0.01"
+value="20.00">
+
+
+<label>Default Mileage Reimbursement ($/mile)</label>
+
+<input
+type="number"
+id="defaultMileageRate"
+step="0.01"
+value="0.76">
+
+
+<label>Default Vehicle</label>
+
+<select id="defaultVehicle">
+
+<option value="Company Vehicle">
+Company Vehicle
+</option>
+
+<option value="Personal Vehicle">
+Personal Vehicle
+</option>
+
+</select>
+
+
+<button id="saveSettingsBtn">
+Save Settings
+</button>
+
+
+</div>
+    <div class="card">
+
+        <h2>Daily Entry</h2>
+<input type="hidden" id="entryId">
+        <label>Date</label>
+        <input type="date" id="date">
+
+        <label>Hours Worked</label>
+        <input type="number" id="hours" step="0.25">
+
+        <label>Starting Odometer</label>
+        <input type="number" id="startOdo">
+
+        <label>Ending Odometer</label>
+        <input type="number" id="endOdo">
+
+        <label>Daily Miles</label>
+        <input type="number" id="dailyMiles" readonly>
+
+        <label>Acres Sampled</label>
+        <input type="number" id="acres">
+
+        <label>Sampling Type</label>
+        <select id="samplingType">
+            <option value="">Select...</option>
+            <option>2.5grid</option>
+            <option>4.4grid</option>
+            <option>10grid</option>
+            <option>RTK</option>
+            <option>Other</option>
+        </select>
+
+        <label>Travel Time (Hours)</label>
+<input type="number" id="travelTime" step="0.25">
+
+
+<label>Vehicle Used</label>
+<select id="vehicleType">
+
+    <option value="Company Vehicle">
+        Company Vehicle
+    </option>
+
+    <option value="Personal Vehicle">
+        Personal Vehicle
+    </option>
+
+</select>
+
+
+<label>Mileage Reimbursement Rate ($/mile)</label>
+<input 
+type="number" 
+id="mileageRate" 
+step="0.01"
+value="0.76">
+
+
+<label>Hourly Pay Rate ($/hour)</label>
+<input 
+type="number"
+id="hourlyRate"
+step="0.01">
+
+        <label>Location Area</label>
+        <input type="text" id="location">
+
+        <label>Other Work Comments</label>
+        <textarea id="comments" rows="4"></textarea>
+
+       <button id="saveBtn">
+    Save Day
+</button>
+
+<button id="cancelEditBtn" class="danger" style="display:none;">
+    Cancel Edit
+</button>
+
+    </div>
+
+    <div class="card">
+
+    <h2>Weekly Report</h2>
+
+    <label>Select Week</label>
+    <input type="week" id="weekSelector">
+
+        <table id="entryTable">
+
+            <thead>
+
+               <tr>
+    <th>Date</th>
+    <th>Hours</th>
+    <th>Miles</th>
+    <th>Acres</th>
+    <th>Type</th>
+    <th>Travel</th>
+    <th>Area</th>
+    <th>Comments</th>
+    <th>Actions</th>
+</tr>
+
+            </thead>
+
+            <tbody>
+
+            </tbody>
+
+        </table>
+
+       <div class="totals">
+
+<h3>Weekly Summary</h3>
+
+
+<p>
+Total Hours:
+<span id="totalHours">0</span>
+</p>
+
+
+<p>
+Regular Hours:
+<span id="regularHours">0</span>
+</p>
+
+
+<p>
+Overtime Hours:
+<span id="overtimeHours">0</span>
+</p>
+
+
+<p>
+Total Miles:
+<span id="totalMiles">0</span>
+</p>
+
+
+<p>
+Personal Vehicle Miles:
+<span id="personalMiles">0</span>
+</p>
+
+
+<p>
+Mileage Reimbursement:
+$<span id="mileagePay">0</span>
+</p>
+
+
+<p>
+Regular Pay:
+$<span id="regularPay">0</span>
+</p>
+
+
+<p>
+Overtime Pay:
+$<span id="overtimePay">0</span>
+</p>
+
+
+<h3>
+Estimated Gross Pay:
+$<span id="grossPay">0</span>
+</h3>
+
+
+</div>
+
+        </div>
+
+        <button id="exportBtn">
+            Export Excel
+        </button>
+
+        <button id="clearBtn" class="danger">
+            Clear Week
+        </button>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+
+<script src="excel.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
